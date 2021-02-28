@@ -1,0 +1,14 @@
+<div class="container">
+<%= @restaurant.name %>
+<%= @restaurant.address %>
+
+<hr>
+<h5>Reviews</h5>
+<% @restaurant.comments.each do |comment| %>
+<p><%= comment.content %></p>
+<% end %>
+
+<hr>
+
+<%= render "simple_form", restaurant: @restaurant  %>
+</div>

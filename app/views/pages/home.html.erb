@@ -1,2 +1,26 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= link_to "sign up", new_user_registration_path %>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<div class="container">
+  <h1>List of all restaurants available</h1>
+  <%= link_to "Add", new_restaurant_path  %>
+  <hr>
+  <div class="cards_1">
+    <% @restaurants.each do |restaurant| %>
+      <div class="card_2">
+        <p><%= restaurant.name %></p>
+        <p><%= restaurant.address %></p>
+        <% restaurant.comments.each do |comment|%>
+        <p><%= comment.content %></p>
+        <% end %>
+
+        <%= link_to "More info", restaurant_path(restaurant) %>
+        <%= link_to "Edit", edit_restaurant_path(restaurant) %>
+        <%= link_to "Remove", restaurant_path(restaurant), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <hr>
+      </div>
+    <% end %>
+  </div>
+  <hr>
+  <%= link_to "Back to index", root_path  %>
+</div>
